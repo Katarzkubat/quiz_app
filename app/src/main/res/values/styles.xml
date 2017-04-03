@@ -6,7 +6,73 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorButtonNormal">#ff5722</item>
+        <item name="colorButtonNormal">@color/colorButtonNormal</item>
     </style>
 
+    <style name="HeadingAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/headingSize</item>
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">50dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+    <style name="LeadAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/leadSize</item>
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:paddingTop">@dimen/paddingTop</item>
+    </style>
+    <style name="QuestionAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/questionSize</item>
+       <item name="android:textColor">@color/questionColor</item>
+        <item name="android:paddingBottom">@dimen/paddingBottom</item>
+        <item name="android:paddingTop">@dimen/paddingTop</item>
+    </style>
+    <style name="QuestionContentAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/questionContentSize</item>
+        <item name="android:textColor">@color/answerColor</item>
+        <item name="android:paddingBottom">@dimen/paddingBottom</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="RadioButtonAppearance" parent="Widget.AppCompat.CompoundButton.RadioButton">
+    <item name="android:textColor">@color/answerColor</item>
+    <item name="android:textSize">@dimen/answerSize</item>
+    </style>
+    <style name="CommandAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textSize">@dimen/answerSize</item>
+        <item name="android:paddingBottom">@dimen/paddingBottom</item>
+        <item name="android:paddingTop">@dimen/paddingTop</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SuggestionAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:paddingTop">@dimen/paddingTop</item>
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textSize">@dimen/questionSize</item>
+        <item name="android:paddingBottom">@dimen/paddingBottom</item>
+    </style>
+    <style name="EntrySubtitleAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:paddingTop">@dimen/paddingTopSubtitle</item>
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textSize">@dimen/questionSize</item>
+        <item name="android:paddingLeft">@dimen/paddingLeftSubtitle</item>
+    </style>
+    <style name="EntryButtonStyle">
+        <item name= "android:textColor">@color/buttonColor</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+    <style name="Subtitle5" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textSize">@dimen/answerSize</item>
+        <item name="android:paddingBottom">@dimen/paddingBottom</item>
+    </style>
+    <style name="Subtitle6" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/headingColor</item>
+        <item name="android:textSize">@dimen/answerSize</item>
+        <item name="android:paddingBottom">@dimen/paddingBottom</item>
+        <item name="android:paddingTop">@dimen/paddingTop</item>
+        <item name="android:paddingLeft">@dimen/paddingLeft</item>
+    </style>
 </resources>

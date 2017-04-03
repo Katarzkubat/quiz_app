@@ -6,19 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 public class MainActivity extends AppCompatActivity {
+
     private int points1 = 0;
     private int points2 = 0;
     private int points3 = 0;
@@ -30,23 +26,27 @@ public class MainActivity extends AppCompatActivity {
     private int points9 = 0;
     private int points10 = 0;
     private int points11 = 0;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    private int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
-    public void onRadioButtonClicked(View view) {
 
+        View next = (Button) findViewById(R.id.button_next);
+
+        next.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent summaryIntent = new Intent(MainActivity.this, SummaryActivity.class);
+                summaryIntent.putExtra(SummaryActivity.RESULT, result);
+                startActivity(summaryIntent);
+                reset();
+            }
+        });
     }
+
     public void onRadioButtonClickedOne(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()) {
@@ -262,124 +262,61 @@ public class MainActivity extends AppCompatActivity {
         String communicate = "You probably haven't checked some question. Check it again.";
 
         if (points1 == 0 || points2 == 0 || points3 == 0 || points4 == 0 || points5 == 0 ||
-                points6 == 0 || points7 == 0){
+                points6 == 0 || points7 == 0) {
 
             Toast.makeText(this, communicate, Toast.LENGTH_LONG).show();
             return;
         }
-        int result = points1 + points2 + points3 + points4 + points5 +
-                        points6 + points7 + points8 + points9 + points10 + points11;
 
-        String communicateResult = "Your result: " + result + "points.";
+        result = points1 + points2 + points3 + points4 + points5 +
+                points6 + points7 + points8 + points9 + points10 + points11;
 
-        if (result >= 7 && result <= 14) {
-            communicateResult = communicateResult + " Good News! Everything is OK";
-        }else if(result > 14 && result <= 22){
-            communicateResult = communicateResult +" It's quite OK";
-        }else if (result > 22 && result <= 30){
-            communicateResult = communicateResult +" Alarm! You should change your habits ASAP!";
-        }else if (result >30) {
-            communicateResult = communicateResult + " Bad News! You need a specialist!";
-        }
-        Toast.makeText(this, communicateResult, Toast.LENGTH_LONG).show();
-        if (result >=7){
-            ((EditText)findViewById(R.id.mail_field)).setVisibility(View.VISIBLE);
-            ((Button)findViewById(R.id.button_send)).setVisibility(View.VISIBLE);
-            ((TextView)findViewById(R.id.text_comment)).setVisibility(View.VISIBLE);
-        }
-    }
-    public void sendMail(View view) {
-        EditText nameField = (EditText)findViewById(R.id.mail_field);
-        String email = nameField.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:" + email));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-        intent.putExtra(Intent.EXTRA_TEXT   , "body of email");
-        try {
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            }
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-        } finally {
-            reset();
+        if (result >= 7) {
+            ((Button) findViewById(R.id.button_next)).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.text_comment)).setVisibility(View.VISIBLE);
         }
     }
 
-    private void reset(){
+    private void reset() {
         points1 = points2 = points3 = points4 = points5 =
                 points6 = points7 = points8 = points9 = points10 = points11 = 0;
-        ((RadioButton)findViewById(R.id.answer1_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer1_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer1_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer1_4)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer2_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer2_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer2_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer2_4)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer3_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer3_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer3_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer3_4)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer4_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer4_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer4_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer4_4)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer5_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer5_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer5_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer5_4)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer6_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer6_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer6_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer6_4)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer7_1)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer7_2)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer7_3)).setChecked(false);
-        ((RadioButton)findViewById(R.id.answer7_4)).setChecked(false);
-        ((CheckBox)findViewById(R.id.checkbox1)).setChecked(false);
-        ((CheckBox)findViewById(R.id.checkbox2)).setChecked(false);
-        ((CheckBox)findViewById(R.id.checkbox3)).setChecked(false);
-        ((CheckBox)findViewById(R.id.checkbox4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer1_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer1_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer1_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer1_4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer2_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer2_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer2_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer2_4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer3_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer3_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer3_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer3_4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer4_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer4_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer4_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer4_4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer5_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer5_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer5_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer5_4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer6_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer6_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer6_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer6_4)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer7_1)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer7_2)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer7_3)).setChecked(false);
+        ((RadioButton) findViewById(R.id.answer7_4)).setChecked(false);
+        ((CheckBox) findViewById(R.id.checkbox1)).setChecked(false);
+        ((CheckBox) findViewById(R.id.checkbox2)).setChecked(false);
+        ((CheckBox) findViewById(R.id.checkbox3)).setChecked(false);
+        ((CheckBox) findViewById(R.id.checkbox4)).setChecked(false);
 
-        ((EditText)findViewById(R.id.mail_field)).setVisibility(View.INVISIBLE);
-        ((Button)findViewById(R.id.button_send)).setVisibility(View.INVISIBLE);
-        ((TextView)findViewById(R.id.text_comment)).setVisibility(View.INVISIBLE);
-    }
+        ((Button) findViewById(R.id.button_next)).setVisibility(View.INVISIBLE);
+        ((TextView) findViewById(R.id.text_comment)).setVisibility(View.INVISIBLE);
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
     }
 }
+
+

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">TestYourCondition</string>
+    <string name="Start">START</string>
+    <string name="Title">Test Your Condition</string>
+    <string name="EntrySubtitle">Answering just a few questions</string>
     <string name="heading">Welcome to our Quiz!</string>
     <string name="subtitle">We can help you to answer the question whether it\'s worth visiting your doctor.</string>
     <string name="subtitle2">Mark each option that is true:</string>
@@ -51,8 +54,11 @@
     <string name="living">I live in industrial environment</string>
     <string name="button1">Submit</string>
     <string name="button2">Send</string>
+    <string name="button3">Next</string>
     <string name="subtitle3">Check your results</string>
-    <string name="subtitle4">If you want to get more information and our suggestion, please leave your e-mail address</string>
+    <string name="subtitle4">If you want to get more information and our suggestion, press the button </string>
+    <string name="subtitle5">Please leave your email address to get more information</string>
+
 
 
 </resources>
